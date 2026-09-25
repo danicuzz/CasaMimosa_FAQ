@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Mimosa — FAQ & Recommendations</title>
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET & BASE ──────────────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --ink:       #1a1714;
+  --ivory:     #f5f0e8;
+  --cream:     #ede8de;
+  --gold:      #b8924a;
+  --gold-lt:   #d4ab6a;
+  --mist:      #9a9488;
+  --white:     #fdfaf4;
+  --serif:     'Cormorant Garant', Georgia, serif;
+  --sans:      'Jost', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ── NOISE TEXTURE OVERLAY ─────────────────────────────── */
+body::before {
+  content:'';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9000;
+  opacity: 0.6;
+}
+
+/* ── HEADER ────────────────────────────────────────────── */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 48px;
+  transition: background 0.5s ease, padding 0.4s ease, backdrop-filter 0.5s;
+}
+header.scrolled {
+  background: rgba(245,240,232,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 14px 48px;
+  border-bottom: 1px solid rgba(184,146,74,0.15);
+}
+
+.logo {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.4s;
+}
+header.scrolled .logo { color: var(--ink); }
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+nav {
+  display: flex;
+  gap: 32px;
+}
+nav a {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s;
+}
+nav a::after {
+  content:'';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.35s ease;
+}
+nav a:hover::after { width: 100%; }
+nav a:hover { color: var(--gold-lt); }
+header.scrolled nav a { color: var(--mist); }
+header.scrolled nav a:hover { color: var(--ink); }
+
+.lang-group {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.lang-btn {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 2px;
+  transition: color 0.3s;
+}
+.lang-btn:hover,
+.lang-btn.active { color: var(--gold); }
+header.scrolled .lang-btn { color: var(--mist); }
+header.scrolled .lang-btn:hover,
+header.scrolled .lang-btn.active { color: var(--gold); }
+.lang-sep { color: rgba(255,255,255,0.2); font-size: 0.6rem; }
+header.scrolled .lang-sep { color: rgba(0,0,0,0.15); }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 24px; height: 1px;
+  background: white;
+  transition: background 0.3s, transform 0.3s;
+}
+header.scrolled .hamburger span { background: var(--ink); }
+
+/* ── HERO ──────────────────────────────────────────────── */
+#hero {
+  height: 70vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 48px 72px;
+  margin-top: 60px;
+  background: linear-gradient(135deg, rgba(212,171,106,0.08) 0%, rgba(184,146,74,0.04) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero-eyebrow {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s 0.3s forwards;
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1.1s 0.5s forwards;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--mist);
+}
+
+.hero-subtitle {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #555048;
+  max-width: 600px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s 0.7s forwards;
+}
+
+/* ── SECTION BASE ──────────────────────────────────────── */
+section {
+  padding: 100px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-label::before {
+  content:'';
+  width: 30px; height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 50px;
+}
+.section-title em {
+  font-style: italic;
+  color: var(--mist);
+}
+
+/* ── FAQ CONTENT ───────────────────────────────────────── */
+.faq-container {
+  display: grid;
+  gap: 60px;
+}
+
+.faq-category {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.faq-category-title {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(184,146,74,0.2);
+}
+
+.faq-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  cursor: pointer;
+  transition: padding 0.3s ease;
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-item:hover { padding: 24px 0; }
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.3;
+  user-select: none;
+}
+
+.faq-toggle {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.faq-toggle::before {
+  content:'';
+  width: 8px;
+  height: 1px;
+  background: var(--gold);
+  position: relative;
+  display: block;
+}
+.faq-toggle::after {
+  content:'';
+  width: 1px;
+  height: 8px;
+  background: var(--gold);
+  position: absolute;
+  transition: opacity 0.35s ease;
+}
+.faq-item.open .faq-toggle {
+  transform: rotate(45deg);
+}
+.faq-item.open .faq-toggle::after {
+  opacity: 0;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.25,0.46,0.45,0.94), 
+              opacity 0.35s ease, padding 0.35s ease;
+  opacity: 0;
+}
+.faq-item.open .faq-answer {
+  max-height: 800px;
+  opacity: 1;
+  padding-top: 20px;
+  margin-top: 16px;
+  border-top: 1px solid rgba(184,146,74,0.15);
+}
+
+.faq-answer-text {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: #555048;
+}
+.faq-answer-text p {
+  margin-bottom: 12px;
+}
+.faq-answer-text p:last-child {
+  margin-bottom: 0;
+}
+
+.recommendation-item {
+  margin-top: 16px;
+  padding: 16px;
+  background: rgba(184,146,74,0.06);
+  border-left: 3px solid var(--gold);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.recommendation-title {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.recommendation-details {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--mist);
+}
+
+.recommendation-link {
+  font-size: 0.85rem;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold);
+  transition: color 0.3s, border-color 0.3s;
+  display: inline-block;
+  margin-top: 8px;
+}
+.recommendation-link:hover {
+  color: var(--gold-lt);
+  border-color: var(--gold-lt);
+}
+
+/* ── FOOTER ────────────────────────────────────────────── */
+footer {
+  background: var(--ink);
+  padding: 32px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.08em;
+}
+.footer-meta {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+}
+
+/* ── ANIMATIONS ────────────────────────────────────────── */
+@keyframes fadeUp {
+  to { opacity:1; transform:translateY(0); }
+}
+
+/* ── MOBILE ────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  header { padding: 18px 24px; }
+  header.scrolled { padding: 12px 24px; }
+
+  nav { display: none; }
+  nav.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--ink);
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    z-index: 999;
+    padding-top: 60px;
+  }
+  nav.open a {
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.7);
+  }
+  nav.open a:hover { color: var(--gold); }
+  .hamburger { display: flex; }
+
+  #hero { 
+    height: 60vh;
+    padding: 0 24px 48px;
+    margin-top: 60px;
+  }
+
+  section { padding: 70px 24px; }
+
+  .faq-question {
+    font-size: 1rem;
+  }
+
+  footer { 
+    flex-direction: column; 
+    gap: 12px; 
+    padding: 24px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  #hero {
+    height: 50vh;
+    padding: 0 16px 32px;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  section { padding: 50px 16px; }
+
+  .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 32px;
+  }
+
+  .faq-item { padding: 16px 0; }
+  
+  .faq-question {
+    font-size: 0.95rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header id="site-header">
+  <a href="index_v2_1.html" class="logo">Casa Mimosa</a>
+
+  <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav id="main-nav">
+    <a href="#rental" data-key="nav_rental">Rental</a>
+    <a href="#activities" data-key="nav_activities">Activities</a>
+    <a href="#restaurants" data-key="nav_restaurants">Restaurants</a>
+  </nav>
+
+  <div class="header-right">
+    <div class="lang-group">
+      <button class="lang-btn active" onclick="setLang('it',this)">IT</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" onclick="setLang('en',this)">EN</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" onclick="setLang('de',this)">DE</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow" data-key="hero_eyebrow">FAQ & Recommendations</p>
+    <h1 class="hero-title" data-key="hero_title">Questions, <em>Answers</em>,<br>& Local Gems</h1>
+    <p class="hero-subtitle" data-key="hero_subtitle">Everything you need to know about your stay at Casa Mimosa, plus our favourite activities and restaurants in Tonnarella and beyond.</p>
+  </div>
+</div>
+
+<!-- RENTAL FAQ -->
+<section id="rental">
+  <div class="reveal">
+    <p class="section-label" data-key="section_rental">Rental</p>
+    <h2 class="section-title" data-key="rental_title">Your Stay <em>Answered</em></h2>
+  </div>
+
+  <div class="faq-container">
+    <div class="faq-category" id="rental-faq">
+      <!-- Generated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section id="activities">
+  <div class="reveal">
+    <p class="section-label" data-key="section_activities">Activities</p>
+    <h2 class="section-title" data-key="activities_title">Discover <em>Tonnarella</em></h2>
+  </div>
+
+  <div class="faq-container">
+    <div class="faq-category" id="activities-faq">
+      <!-- Generated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- RESTAURANTS -->
+<section id="restaurants">
+  <div class="reveal">
+    <p class="section-label" data-key="section_restaurants">Restaurants</p>
+    <h2 class="section-title" data-key="restaurants_title">Where to Eat <em>Well</em></h2>
+  </div>
+
+  <div class="faq-container">
+    <div class="faq-category" id="restaurants-faq">
+      <!-- Generated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">Casa Mimosa</span>
+  <span class="footer-meta">Tonnarella (ME) — FAQ v.1.0</span>
+</footer>
+
+<script>
+/* ── TRANSLATIONS ──────────────────────────────────────── */
+const T = {
+it: {
+  hero_eyebrow: "FAQ & Recommendations",
+  hero_title: "Domande, <em>Risposte</em>,<br>& Consigli local",
+  hero_subtitle: "Tutto quello che c'è da sapere sul tuo soggiorno a Casa Mimosa, più le nostre raccomandazioni per attività e ristoranti a Tonnarella e dintorni.",
+  nav_home: "Homepage",
+  nav_rental: "Affitto",
+  nav_activities: "Attività",
+  nav_restaurants: "ristoranti",
+  section_rental: "Affitto",
+  rental_title: "Domande e <em>Risposte</em> utili",
+  section_activities: "Attività",
+  activities_title: "Scopri <em>Tonnarella</em>",
+  section_restaurants: "Ristoranti",
+  restaurants_title: "Dove mangiare <em>Bene</em>",
+
+  /* RENTAL FAQ */
+  rental_q1: "Quali sono gli orari di check-in e check-out?",
+  rental_a1: "Il check-in è dalle 14:00 e il check-out è entro le 13:00. Se avete esigenze diverse, contattateci e cercheremo di venirvi incontro per quanto possibile.",
+  rental_q2: "Effettuate il cambio di lenzuola e asciugamani?",
+  rental_a2: "Non effettuiamo servizio durante il soggiorno, in caso di soggiorni lunghi potrete usufruire di set di lenzuola e asciugamani di ricambio, così come della lavatrice per lavare la biancheria, se necessario.",
+  rental_q3: "Perché non è presente la connessione a internet Wi-Fi?",
+  rental_a3: "Purtroppo, per garantire una conessione Wi-Fi dovremmo sottoscrivere un abbonamento ordinario (annuale o biennale) presso un operatore di telefonia fissa. Visto che l'appartamento viene usato solo 4-5 mesi l'anno, questo sarebbe per noi poco sostenibile a livello finanziario. Se il nostro business aumenterà, considereremo la possibilità di ampliare i nostri servizi. Grazie per la comprensione.",
+  rental_q4: "Esistono altre possibilità di accesso a internet?",
+  rental_a4: "Possiamo mettere a disposizione su richiesta un modem 4G da posizionare in un apposito punto del giardino, dove la copertura è adeguata. Questo servizio costa 30€ una tantum ed è da concordare con noi. Solitamente sono necessarie 24 ore per l'attivazione della connessione.",
+  rental_q5: "Dove si trova l'interruttore per la luce del giardino?",
+  rental_a5: "Accanto al mobiletto con il televisore, in basso.",
+  rental_q6: "Com'è la sicurezza della zona? È possibile lasciare la porta-finestra del giardino aperta la notte?",
+  rental_a6: "La zona è assolutamente sicura. Da quando abbiamo acquisito la proprietà di Casa Mimosa oltre 20 anni fa, non si sono mai verificati né intrusioni né furti.",
+
+  /* ACTIVITIES */
+  activities_q1: "Quali sono le spiagge più belle vicino a Casa Mimosa?",
+  activities_a1: "La spiaggia di Tonnarella è a soli 50 metri. Altre spiagge da visitare nella zona sono la Riserva Naturale dei Laghetti di Marinello (15 minuti di auto), la Baia del Tono di Milazzo (30 minuti di auto senza traffico), le spiagge di Capo Calavà e Gioiosa Marea (30-45 minuti di auto).",
+  activities_q2: "Come si raggiungono le Isole Eolie da Tonnarella?",
+  activities_a2: "I traghetti e gli aliscafi di linea partono dal Porto di Milazzo (30 minuti di auto senza traffico). Tramite aliscafi rapidi, Vulcano si raggiunge in 45 minuti, Lipari in 55 minuti e Salina in un'ora e mezza di navigazione. Si possono consultare orari e prezzi sul sito o app mobile <i>Liberty Lines</i>. Alternativamente, dei tour operator organizzano escursioni in giornata a mezzo di motonavi private in partenza da Tonnarella o da Portorosa, che consentono di visitare più isole in una sola giornata.",
+  activities_q3: "Quali escursioni a piedi ci sono nei dintorni?",
+  activities_a3: "Il sentiero <i>Coda di Volpe</i>, che porta dalla Riserva Naturale dei Laghetti di Marinello al Santuario di Tindari; i sentieri dell'Area Marina Protetta (AMP) di Capo Milazzo; visita ai Megaliti di Argimusco (Montalbano Elicona).",
+  activities_q4: "Cosa fare nei giorni di pioggia?",
+  activities_a4: "Shopping al Parco Commerciale Corolla (Milazzo), gustare un pasto completo in una trattoria locale, visitare i centri storici di Barcellona Pozzo di Gotto o Milazzo. ",
+  activities_q5: "Cosa non perdere in una settimana?",
+  activities_a5: "La Riserva Naturale dei Laghetti di Marinello, la località di Tindari con la basilica della Madonna Nera e il teatro greco-romano, la Baia del Tono di Milazzo, la visita della città di Milazzo con il suo castello fortificato e l'Area Marina Protetta (AMP) di Capo Milazzo, una giornata alle isole Eolie.",
+  activities_q6: "Cosa visitare verso l'entroterra e la zona di montagna?",
+  activities_a6: "I borghi medievali di Novara di Sicilia (35 minuti di auto) e Montalbano Elicona (un'ora di auto), il sito megalitico dell'Argimusco (sopra Montalbano Elicona), il borgo di Floresta (un'ora di auto).",
+
+  /* RESTAURANTS */
+  restaurants_q1: "Quali sono i ristoranti consigliati a Tonnarella?",
+  restaurants_a1: "I nostri preferiti sono <i>La Risacca</i> e <i>La Conchiglia</i>, raggiungibili a piedi da Casa Mimosa. Entrambi offrono specialità locali di pesce e di carne, oltre alla pizza.",
+  restaurants_q2: "Quali sono i ristoranti di pesce consigliati nel circondario?",
+  restaurants_a2: "Per specialità di pesce consigliamo <i>Da Vincenzo</i> e <i>Agriturismo La Camelia</i> a Falcone, <i>Donna Rosa</i> a Oliveri, <i>Il Gabbiano</i> a Terme Vigliatore. Per tutti consigliamo la prenotazione.",
+  restaurants_q3: "Quali sono i ristoranti di carne consigliati nel circondario?",
+  restaurants_a3: "Per specialità di carne consigliamo <i>La Braceria dei Goti</i> a Barcellona Pozzo di Gotto, <i>Ristorante Angelo Borrello</i> a Sinagra, <i>Osteria del Suino Nero</i> a Sinagra. Per tutti consigliamo la prenotazione.",
+  restaurants_q4: "Quali sono i piatti tipici da provare al ristorante?",
+  restaurants_a4: "Pasta alla Norma, pasta con gamberi e pistacchio, pesce spada affumicato, crudités di mare, specialità di tonno, caponata, frittura mista di pesce, grigliata mista di pesce, involtini di pesce spada, involtini di carne alla messinese (<i>braciolettine</i>).",
+  restaurants_q5: "Quali sono le specialità tipiche da provare in rosticceria e negli snack bar?",
+  restaurants_a5: "Arancini, <i>pitoni messinesi</i> tradizionali (fagotti ripieni di pomodoro, indivia e acciughe) <i>pitoni messinesi</i> nella variante al prosciutto e formaggio, sfoglie al prosciutto, focaccia messinese al trancio.",
+  restaurants_q6: "Ci consigliate una gelateria o un bar in zona per fare colazione con granita e brioche?",
+  restaurants_a6: "Il nostro bar preferito è <i>Il Gabbiano</i> a Terme Vigliatore, a 5 minuti di auto da Casa Mimosa. Buone alternative raggiungibili a piedi sono <i>Gelato Mania di Alessandro Spinella</i> e <i>Il Veliero</i>.",
+
+
+  /* RECOMMENDATIONS WITH LINKS ITALIAN */
+  libertylines_name: "Liberty Lines",
+  libertylines_desc: "Aliscafi che collegano Milazzo alle Isole Eolie.",
+  libertylines_link: "Visita il sito",
+  libertylines_url: "https://www.libertylines.it/en/destinations/milazzo/",
+
+  marinello_name: "Riserva Naturale Laghetti di Marinello",
+  marinello_desc: "Riserva naturale costiera protetta con lagune, spiagge e natura mediterranea.",
+  marinello_link: "Maggiori informazioni",
+  marinello_url: "https://orbs.regione.sicilia.it/aree-protette/riserve-naturali-siciliane/163-riserva-naturale-orientata-laghetti-di-marinello.html",
+
+  codavolpe_name: "Sentiero Coda di Volpe",
+  codavolpe_desc: "Sentiero panoramico sulla costa attraverso il paesaggio naturale intorno a Milazzo.",
+  codavolpe_link: "Maggiori informazioni",
+  codavolpe_url: "https://maps.app.goo.gl/TtiA36ZGDo814aX26",
+
+  baiadeltono_name: "Baia del Tono",
+  baiadeltono_desc: "Lunga spiaggia sabbiosa e ghiaiosa sulla costa occidentale di Milazzo, con vista delle Isole Eolie. Assicuratevi di restare fino al tramonto.",
+  baiadeltono_link: "Maggiori informazioni",
+  baiadeltono_url: "https://comune.milazzo.me.it/vivere-il-comune/luoghi/bellezza-naturale/baia-del-tono-gia-nota-come-n-gonia/",
+
+  ampmilazzo_name: "Area Marina Protetta Capo Milazzo",
+  ampmilazzo_desc: "Area marina protetta intorno al promontorio di Capo Milazzo, ideale per esplorare la costa e il mare.",
+  ampmilazzo_link: "Visita il sito",
+  ampmilazzo_url: "https://www.ampcapomilazzo.it/",
+
+  argimusco_name: "Megaliti di Argimusco",
+  argimusco_desc: "Misteriose formazioni rocciose dall'aspetto preistorico sui monti Nebrodi.",
+  argimusco_link: "Maggiori informazioni",
+  argimusco_url: "https://maps.app.goo.gl/LU1AU4y6W4KxpSpk8",
+
+  corolla_name: "Parco Commerciale Corolla (Milazzo)",
+  corolla_desc: "Grande parco commerciale e ricreativo con negozi, ristoranti e cinema.",
+  corolla_link: "Visita il sito",
+  corolla_url: "https://www.parcocorolla.eu/",
+
+  tindari_name: "Tindari",
+  tindari_desc: "Antico santuario in cima al colle e sito archeologico con vista sul Golfo di Patti e sui Laghetti di Marinello.",
+  tindari_link: "Maggiori informazioni",
+  tindari_url: "https://maps.app.goo.gl/PTLbKvqrNEKNDYGi6",
+
+  novara_name: "Novara di Sicilia",
+  novara_desc: "Affascinante villaggio di montagna noto per le sue strade in pietra, l'architettura tradizionale e la campagna circostante.",
+  novara_link: "Maggiori informazioni",
+  novara_url: "https://maps.app.goo.gl/8kD4gzNZFSYDXNBG9",
+
+  montalbano_name: "Montalbano Elicona",
+  montalbano_desc: "Villaggio medievale in cima al colle con un castello storico e una vista spettacolare sulla Sicilia settentrionale.",
+  montalbano_link: "Maggiori informazioni",
+  montalbano_url: "https://borghipiubelliditalia.it/borgo/montalbano-elicona/",
+
+  camelia_name: "Agriturismo La Camelia",
+  camelia_desc: "Agriturismo rurale che offre cucina siciliana locale e un'atmosfera rurale tranquilla.",
+  camelia_link: "Visita il sito",
+  camelia_url: "https://maps.app.goo.gl/hd5prKcDmhiS23Pe6",
+
+  davincenzo_name: "Da Vincenzo",
+  davincenzo_desc: "Tradizionale ristorante siciliano specializzato in pesce fresco, carne e ingredienti locali.",
+  davincenzo_link: "Visita il sito",
+  davincenzo_url: "https://www.ristorantedavincenzo.it/",
+
+  risacca_name: "La Risacca",
+  risacca_desc: "Ristorante sul mare che serve pesce fresco e cucina siciliana tradizionale.",
+  risacca_link: "Visita il sito",
+  risacca_url: "https://maps.app.goo.gl/L4ZN2R5RJ94vnjay5",
+
+  conchiglia_name: "La Conchiglia",
+  conchiglia_desc: "Ristorante specializzato in frutti di mare e piatti siciliani tradizionali.",
+  conchiglia_link: "Visita il sito",
+  conchiglia_url: "https://maps.app.goo.gl/YHPhTq5eQg5Kf4s77",
+
+  gabbiano_name: "Il Gabbiano",
+  gabbiano_desc: "Ristorante di qualità che serve sia piatti a base di frutti di mare che di carne.",
+  gabbiano_link: "Visita il sito",
+  gabbiano_url: "https://gabbianohotel.com/ristorante/",
+
+  braceria_name: "La Braceria dei Goti",
+  braceria_desc: "Macelleria e ristorante grill a Barcellona Pozzo di Gotto specializzato in carne di alta qualità cotta sulla brace.",
+  braceria_link: "Visita il sito",
+  braceria_url: "https://www.braceriadeigoti.it/ristorante-deigoti/",
+
+  borrello_name: "Ristorante Angelo Borrello",
+  borrello_desc: "Ristorante a conduzione familiare a Sinagra con prodotti locali dei Nebrodi e cucina tradizionale.",
+  borrello_link: "Maggiori informazioni",
+  borrello_url: "https://maps.app.goo.gl/3YSkzWrd8PUDM2sj8",
+
+  suinonero_name: "Fattoria Borrello - Osteria dei Sapori",
+  suinonero_desc: "Agriturismo a Sinagra che celebra i sapori dei Nebrodi e il maiale nero locale.",
+  suinonero_link: "Maggiori informazioni",
+  suinonero_url: "https://fattoriaborrello.it/osteria-2/",
+
+  calava_name: "Capo Calavà",
+  calava_desc: "Promontorio costiero spettacolare con scogliere rocciose, grotte, spiagge e vista delle Isole Eolie.",
+  calava_link: "Maggiori informazioni",
+  calava_url: "https://maps.app.goo.gl/r3yV2TRmw6rrTjPj6",
+
+  gioiosa_name: "Gioiosa Marea",
+  gioiosa_desc: "Cittadina balneare con spiagge, acqua cristallina, paesaggio costiero e splendide vedute.",
+  gioiosa_link: "Maggiori informazioni",
+  gioiosa_url: "https://maps.app.goo.gl/bAbTv5iRyuQGxtndA",
+
+  donnarosa_name: "Donna Rosa",
+  donnarosa_desc: "Ristorante e pizzeria a Oliveri che serve cucina siciliana, pesce fresco, carne e un'ampia selezione di pizze.",
+  donnarosa_link: "Visita il sito",
+  donnarosa_url: "https://www.ristorantedonnarosa.it/",
+},
+
+de: {
+  hero_eyebrow: "FAQ & Empfehlungen",
+  hero_title: "Fragen, <em>Antworten</em>,<br>& Lokale Schätze",
+  hero_subtitle: "Alles, was Sie über Ihren Aufenthalt im Casa Mimosa wissen müssen, plus unsere Lieblingsaktivitäten und Restaurants in Tonnarella und darüber hinaus.",
+  nav_home: "Startseite",
+  nav_rental: "Vermietung",
+  nav_activities: "Aktivitäten",
+  nav_restaurants: "Restaurants",
+  section_rental: "Vermietung",
+  rental_title: "Ihr Aufenthalt <em>beantwortet</em>",
+  section_activities: "Aktivitäten",
+  activities_title: "Entdecken Sie <em>Tonnarella</em>",
+  section_restaurants: "Restaurants",
+  restaurants_title: "Wo man <em>gut</em> isst",
+
+  /* RENTAL FAQ */
+  rental_q1: "Was sind die Check-in- und Check-out-Zeiten?",
+  rental_a1: "Der Check-in ist ab 14:00 Uhr und der Check-out ist bis 13:00 Uhr. Wenn Sie unterschiedliche Anforderungen haben, kontaktieren Sie uns bitte und wir werden versuchen, Sie so gut wie möglich zu unterstützen.",
+  rental_q2: "Sind Bettwäsche und Handtücher enthalten?",
+  rental_a2: "Ja, Bettwäsche und Handtücher sind inbegriffen. Wir bieten keinen Wäschewechselservice während Ihres Aufenthalts an. Bei längeren Aufenthalten können Sie die Waschmaschine zum Waschen der Wäsche bei Bedarf nutzen.",
+  rental_q3: "Warum gibt es keine WLAN-Internetverbindung?",
+  rental_a3: "Leider würde die Bereitstellung einer WLAN-Verbindung ein regelmäßiges Abonnement bei einem Internetanbieter erfordern. Da die Wohnung nur 4-5 Monate im Jahr genutzt wird, ist dies für uns nicht wirtschaftlich vertretbar. Wenn unser Geschäft wächst, werden wir die Erweiterung unserer Dienstleistungen in Betracht ziehen. Vielen Dank für Ihr Verständnis.",
+  rental_q4: "Gibt es andere Möglichkeiten, auf das Internet zuzugreifen?",
+  rental_a4: "Auf Anfrage können wir ein 4G-Modem bereitstellen, das an einer bestimmten Stelle im Garten aufgestellt wird, wo die Signalstärke ausreichend ist. Dieser Service kostet 30€ als einmalige Gebühr und muss mit uns vereinbart werden. Die Aktivierung der Verbindung dauert normalerweise 24 Stunden.",
+  rental_q5: "Wo ist der Schalter für die Gartenbeleuchtung?",
+  rental_a5: "Neben dem Schrank mit dem Fernseher, unten.",
+  rental_q6: "Wie sicher ist die Gegend? Können wir die Gartentür nachts offen lassen?",
+  rental_a6: "Die Gegend ist absolut sicher. Seit wir das Casa Mimosa Grundstück vor über 20 Jahren erworben haben, gab es noch nie Einbrüche oder Diebstähle.",
+
+  /* ACTIVITIES */
+  activities_q1: "Was sind die schönsten Strände in der Nähe des Casa Mimosa?",
+  activities_a1: "Der Strand von Tonnarella ist nur 50 Meter entfernt. Weitere sehenswerte Strände in der Gegend sind die Naturschutzgebiet Marinello-Seen (15 Minuten mit dem Auto), die Baia del Tono in Milazzo (30 Minuten ohne Verkehrsstau) und die Strände von Capo Calavà und Gioiosa Marea (30-45 Minuten mit dem Auto).",
+  activities_q2: "Wie können wir die Äolischen Inseln von Tonnarella aus erreichen?",
+  activities_a2: "Regelmäßige Fähren und Schnellfähren fahren vom Hafen von Milazzo ab (30 Minuten mit dem Auto ohne Verkehrsstau). Mit der schnellen Tragflächenboot können Vulcano in 45 Minuten, Lipari in 55 Minuten und Salina in anderthalb Stunden erreicht werden. Fahrpläne und Preise finden Sie auf der Website oder in der mobilen App von Liberty Lines. Alternativ organisieren Reiseveranstalter Tagesausflüge mit privaten Motorbooten, die von Tonnarella oder Portorosa abfahren, so dass Sie mehrere Inseln an einem Tag besuchen können.",
+  activities_q3: "Welche Wanderwege gibt es in der Nähe?",
+  activities_a3: "Der Weg Coda di Volpe, der vom Naturschutzgebiet Laghetti di Marinello zum Heiligtum von Tindari führt; die Wege im Meeresschutzgebiet (AMP) von Capo Milazzo; ein Besuch der megalithischen Stätte von Argimusco (Montalbano Elicona).",
+  activities_q4: "Was können wir an regnerischen Tagen tun?",
+  activities_a4: "Einkaufen im Parco Commerciale Corolla (großes Einkaufszentrum in Milazzo), Genießen einer vollständigen Mahlzeit in einer lokalen Trattoria oder Besuch der historischen Zentren von Barcellona Pozzo di Gotto oder Milazzo.",
+  activities_q5: "Was darf ich während eines einwöchigen Aufenthalts nicht verpassen?",
+  activities_a5: "Das Naturschutzgebiet Laghetti di Marinello, Tindari mit der Basilika der Schwarzen Madonna und dem griechisch-römischen Theater, die Baia del Tono in Milazzo, ein Besuch der Stadt Milazzo mit ihrer Festung und des Meeresschutzgebiets (AMP) von Capo Milazzo sowie ein Tagesausflug zu den Äolischen Inseln.",
+  activities_q6: "Was gibt es im Inland und in der Bergregion zu besichtigen?",
+  activities_a6: "Die Mittelalter-Dörfer Novara di Sicilia (35 Minuten mit dem Auto) und Montalbano Elicona (eine Stunde mit dem Auto), der megalithische Park von Argimusco (über Montalbano Elicona) und das Dorf Floresta (eine Stunde mit dem Auto).",
+
+  /* RESTAURANTS */
+  restaurants_q1: "Welche Restaurants empfehlen Sie in Tonnarella?",
+  restaurants_a1: "Unsere Favoriten sind La Risacca und La Conchiglia, beide zu Fuß vom Casa Mimosa erreichbar. Beide bieten lokale Fisch- und Fleischspezialitäten sowie köstliche Pizza.",
+  restaurants_q2: "Welche Fischrestaurants empfehlen Sie in der Umgebung?",
+  restaurants_a2: "Für Fischspezialitäten empfehlen wir Da Vincenzo und Agriturismo La Camelia in Falcone, Donna Rosa in Oliveri und Il Gabbiano in Terme Vigliatore. Wir empfehlen, in allen eine Reservierung vorzunehmen.",
+  restaurants_q3: "Welche Fleischrestaurants empfehlen Sie in der Umgebung?",
+  restaurants_a3: "Für Fleischspezialitäten empfehlen wir La Braceria dei Goti in Barcellona Pozzo di Gotto, Ristorante Angelo Borrello in Sinagra und Osteria del Suino Nero in Sinagra. Wir empfehlen, in allen eine Reservierung vorzunehmen.",
+  restaurants_q4: "Welche lokalen Gerichte sollten wir in Restaurants probieren?",
+  restaurants_a4: "Pasta alla Norma, Pasta mit Garnelen und Pistazie, geräucherter Schwertfisch, rohe oder eingelegte Meeresfrüchte, Thun-Spezialitäten, Caponata, gemischte gebratene Fische, gemischte gegrillte Fische, Schwertfischrollen, Fleischrollen im Messina-Stil (Braciolettine).",
+  restaurants_q5: "Welche lokalen Spezialitäten sollten wir in Bäckereien und Snackbars probieren?",
+  restaurants_a5: "Arancini, traditionelle Pitoni Messinesi (Teig gefüllt mit Tomate, Endivien und Sardellen), Pitoni Messinesi mit Schinken und Käse, mit Schinken gefüllte Blätterteigpasteten und Focaccia im Messina-Stil nach Gewicht.",
+  restaurants_q6: "Können Sie eine Eisdiele oder einen Cafeteria in der Gegend für das Frühstück mit Granita und Brioche empfehlen?",
+  restaurants_a6: "Unser liebster sizilianischer Cafeteria (Eisdiele und Kaffeestube) ist Il Gabbiano in Terme Vigliatore, nur 5 Autominuten vom Casa Mimosa entfernt. Gute zu Fuß erreichbare Alternativen sind Gelato Mania di Alessandro Spinella und Il Veliero.",
+
+  /* RECOMMENDATIONS WITH LINKS GERMAN */
+  libertylines_name: "Liberty Lines",
+  libertylines_desc: "Schnellfähren verbinden Milazzo mit den Äolischen Inseln.",
+  libertylines_link: "Website besuchen",
+  libertylines_url: "https://www.libertylines.it/en/destinations/milazzo/",
+
+  marinello_name: "Riserva Naturale Laghetti di Marinello",
+  marinello_desc: "Geschütztes Küstenschutzgebiet mit Lagunen, Stränden und mediterraner Natur.",
+  marinello_link: "Mehr Informationen",
+  marinello_url: "https://orbs.regione.sicilia.it/aree-protette/riserve-naturali-siciliane/163-riserva-naturale-orientata-laghetti-di-marinello.html",
+
+  codavolpe_name: "Sentiero Coda di Volpe",
+  codavolpe_desc: "Malerischer Wanderweg durch die natürliche Landschaft zwischen Marinello und Tindari.",
+  codavolpe_link: "Mehr Informationen",
+  codavolpe_url: "https://maps.app.goo.gl/TtiA36ZGDo814aX26",
+
+  baiadeltono_name: "Baia del Tono",
+  baiadeltono_desc: "Langer Kieselstrand an der Westküste von Milazzo mit Blick auf die Äolischen Inseln. Bleiben Sie unbedingt bis zum Sonnenuntergang.",
+  baiadeltono_link: "Mehr Informationen",
+  baiadeltono_url: "https://comune.milazzo.me.it/vivere-il-comune/luoghi/bellezza-naturale/baia-del-tono-gia-nota-come-n-gonia/",
+
+  ampmilazzo_name: "Area Marina Protetta Capo Milazzo",
+  ampmilazzo_desc: "Geschütztes Meeresgebiet rund um die Halbinsel von Capo Milazzo, ideal zum Erkunden der Küste und des Meeres.",
+  ampmilazzo_link: "Website besuchen",
+  ampmilazzo_url: "https://www.ampcapomilazzo.it/",
+
+  argimusco_name: "Megaliti di Argimusco",
+  argimusco_desc: "Mysteriöse prähistorisch wirkende Felsformationen in den Nebrodi-Bergen.",
+  argimusco_link: "Mehr Informationen",
+  argimusco_url: "https://maps.app.goo.gl/LU1AU4y6W4KxpSpk8",
+
+  corolla_name: "Parco Commerciale Corolla (Milazzo)",
+  corolla_desc: "Großer Einkaufs- und Freizeitpark mit Geschäften, Restaurants und Kino.",
+  corolla_link: "Website besuchen",
+  corolla_url: "https://www.parcocorolla.eu/",
+
+  tindari_name: "Tindari",
+  tindari_desc: "Historisches Heiligtum auf dem Hügel und archäologische (griechisch-römische) Stätte mit Blick auf den Golf von Patti und die Laghetti di Marinello.",
+  tindari_link: "Mehr Informationen",
+  tindari_url: "https://maps.app.goo.gl/PTLbKvqrNEKNDYGi6",
+
+  novara_name: "Novara di Sicilia",
+  novara_desc: "Charmantes Bergdorf bekannt für seine Steinstraßen, traditionelle Architektur und umgebende Landschaft.",
+  novara_link: "Mehr Informationen",
+  novara_url: "https://maps.app.goo.gl/8kD4gzNZFSYDXNBG9",
+
+  montalbano_name: "Montalbano Elicona",
+  montalbano_desc: "Mittelalterliches Bergdorf mit einer historischen Burg und spektakulärer Aussicht über Nordostsizilien.",
+  montalbano_link: "Mehr Informationen",
+  montalbano_url: "https://borghipiubelliditalia.it/borgo/montalbano-elicona/",
+
+  camelia_name: "Agriturismo La Camelia",
+  camelia_desc: "Ländlicher Agriturismo mit lokaler sizilianischer Küche und ruhiger ländlicher Umgebung.",
+  camelia_link: "Website besuchen",
+  camelia_url: "https://maps.app.goo.gl/hd5prKcDmhiS23Pe6",
+
+  davincenzo_name: "Da Vincenzo",
+  davincenzo_desc: "Traditionelles sizilianisches Restaurant spezialisiert auf frischen Fisch, Fleisch und lokale Zutaten.",
+  davincenzo_link: "Website besuchen",
+  davincenzo_url: "https://www.ristorantedavincenzo.it/",
+
+  risacca_name: "La Risacca",
+  risacca_desc: "Strandrestaurant mit frischem Fisch, traditioneller sizilianische Küche und Pizza.",
+  risacca_link: "Website besuchen",
+  risacca_url: "https://maps.app.goo.gl/L4ZN2R5RJ94vnjay5",
+
+  conchiglia_name: "La Conchiglia",
+  conchiglia_desc: "Restaurant spezialisiert auf Fischgerichte, traditionelle sizilianische Gerichte, und Pizza",
+  conchiglia_link: "Website besuchen",
+  conchiglia_url: "https://maps.app.goo.gl/YHPhTq5eQg5Kf4s77",
+
+  gabbiano_name: "Il Gabbiano",
+  gabbiano_desc: "Feines Restaurant mit Meeresfrüchten und Fleischgerichten.",
+  gabbiano_link: "Website besuchen",
+  gabbiano_url: "https://gabbianohotel.com/ristorante/",
+
+  braceria_name: "La Braceria dei Goti",
+  braceria_desc: "Metzgerei und Grillrestaurant in Barcellona Pozzo di Gotto, spezialisiert auf hochwertige Fleischsorten über Holzkohle gegrillt.",
+  braceria_link: "Website besuchen",
+  braceria_url: "https://www.braceriadeigoti.it/ristorante-deigoti/",
+
+  borrello_name: "Ristorante Angelo Borrello",
+  borrello_desc: "Familiengeführtes Restaurant in Sinagra mit lokalen Nebrodi-Produkten und traditioneller Küche.",
+  borrello_link: "Mehr Informationen",
+  borrello_url: "https://maps.app.goo.gl/3YSkzWrd8PUDM2sj8",
+
+  suinonero_name: "Fattoria Borrello - Osteria dei Sapori",
+  suinonero_desc: "Agriturismo in Sinagra, das die Aromen der Nebrodi und das lokale schwarze Schwein zelebriert.",
+  suinonero_link: "Mehr Informationen",
+  suinonero_url: "https://fattoriaborrello.it/osteria-2/",
+
+  calava_name: "Capo Calavà",
+  calava_desc: "Dramatisches Küstenkap mit Felsklippen, Höhlen, Stränden und Blick auf die Äolischen Inseln.",
+  calava_link: "Mehr Informationen",
+  calava_url: "https://maps.app.goo.gl/r3yV2TRmw6rrTjPj6",
+
+  gioiosa_name: "Gioiosa Marea",
+  gioiosa_desc: "Küstendorf mit Stränden, kristallklarem Wasser, Küstenlandschaft und wunderschöner Aussicht.",
+  gioiosa_link: "Mehr Informationen",
+  gioiosa_url: "https://maps.app.goo.gl/bAbTv5iRyuQGxtndA",
+  
+  donnarosa_name: "Donna Rosa",
+  donnarosa_desc: "Restaurant und Pizzeria in Oliveri mit sizilianischer Küche, frischem Fisch, Fleisch und einer großen Auswahl an Pizzen.",
+  donnarosa_link: "Website besuchen",
+  donnarosa_url: "https://www.ristorantedonnarosa.it/",
+},
+
+en: {
+  hero_eyebrow: "FAQ & Recommendations",
+  hero_title: "Questions, <em>Answers</em>,<br>& Local Gems",
+  hero_subtitle: "Everything you need to know about your stay at Casa Mimosa, plus our favourite activities and restaurants in Tonnarella and beyond.",
+  nav_home: "Home",
+  nav_rental: "Rental",
+  nav_activities: "Activities",
+  nav_restaurants: "Restaurants",
+  section_rental: "Rental",
+  rental_title: "Your Stay <em>Answered</em>",
+  section_activities: "Activities",
+  activities_title: "Discover <em>Tonnarella</em>",
+  section_restaurants: "Restaurants",
+  restaurants_title: "Where to Eat <em>Well</em>",
+
+  /* RENTAL FAQ */
+  rental_q1: "What are the check-in and check-out times?",
+  rental_a1: "Check-in is from 14:00 and check-out is by 13:00. If you have different needs, please contact us and we will try to accommodate you as much as possible.",
+  rental_q2: "Are bed linen and towels provided?",
+  rental_a2: "Yes, bed linen and towels are included. We do not provide a linen change service during your stay. For longer stays, you can use the washing machine to wash the linen if necessary.",
+  rental_q3: "Why is there no Wi-Fi internet connection?",
+  rental_a3: "Unfortunately, providing a Wi-Fi connection would require us to take out a regular subscription with an internet provider. Since the apartment is only used for 4-5 months a year, this would not be financially sustainable for us. If our business grows, we will consider expanding our services. Thank you for your understanding.",
+  rental_q4: "Are there other ways to access the internet?",
+  rental_a4: "Upon request, we can provide a 4G modem to be placed in a specific spot in the garden where coverage is adequate. This service costs 30€ as a one-off fee and must be arranged with us. It usually takes 24 hours to activate the connection.",
+  rental_q5: "Where is the switch for the garden light?",
+  rental_a5: "Next to the cabinet with the TV, at the bottom.",
+  rental_q6: "How safe is the area? Can we leave the garden patio door open at night or while we are away?",
+  rental_a6: "The area is absolutely safe. Since we acquired the Casa Mimosa property over 20 years ago, there have never been any break-ins or thefts.",
+
+  /* ACTIVITIES */
+  activities_q1: "What are the most beautiful beaches near Casa Mimosa?",
+  activities_a1: "Tonnarella Beach is just 50 metres away. Other beaches worth visiting in the area are the Marinello Lakes Nature Preserve (15 minutes by car), the Baia del Tono in Milazzo (30 minutes by car without traffic), and the beaches of Capo Calavà and Gioiosa Marea (30-45 minutes by car).",
+  activities_q2: "How can we reach the Aeolian Islands from Tonnarella?",
+  activities_a2: "Regular ferries and hydrofoils depart from the Port of Milazzo (30 minutes by car without traffic). By fast hydrofoil, Vulcano can be reached in 45 minutes, Lipari in 55 minutes and Salina in one and a half hours. Timetables and prices can be found on the <i>Liberty Lines</i> website or mobile app. Alternatively, tour operators organise day trips on private motorboats departing from Tonnarella or Portorosa, allowing you to visit several islands in a single day.",
+  activities_q3: "What hiking trails are there nearby?",
+  activities_a3: "The <i>Coda di Volpe</i> trail, which leads from the Marinello Lakes Nature Reserve to the Sanctuary of Tindari; the trails in the Marine Protected Area (AMP) of Capo Milazzo; a visit to the megalithic site of Argimusco (Montalbano Elicona).",
+  activities_q4: "What can we do on rainy days?",
+  activities_a4: "Shopping at the Parco Commercialle Corolla (Large shopping mall in Milazzo), enjoying a full-course meal at a local trattoria, or visiting the historic centres of Barcellona Pozzo di Gotto or Milazzo. ",
+  activities_q5: "What should we not miss during a one-week stay?",
+  activities_a5: "The Marinello Lakes Nature Preserve, Tindari with the Basilica of the Black Madonna and the Greek-Roman theatre, the Baia del Tono in Milazzo, a visit to the town of Milazzo with its fortress and the Marine Protected Area (AMP) of Capo Milazzo, and a day trip to the Aeolian Islands.",
+  activities_q6: "What is there to visit inland and in the mountain area?",
+  activities_a6: "The medieval villages of Novara di Sicilia (35 minutes by car) and Montalbano Elicona (one hour by car), the megalithic park of Argimusco (above Montalbano Elicona), and the village of Floresta (one hour by car).",
+
+  /* RESTAURANTS */
+  restaurants_q1: "What restaurants do you recommend in Tonnarella?",
+  restaurants_a1: "Our favourites are <i>La Risacca</i> and <i>La Conchiglia</i>, both within walking distance of Casa Mimosa. Both offer local fish and meat specialities, as well as delicious pizza.",
+  restaurants_q2: "What fish restaurants do you recommend in the surrounding area?",
+  restaurants_a2: "For fish specialities, we recommend <i>Da Vincenzo</i> and <i>Agriturismo La Camelia</i> in Falcone, <i>Donna Rosa</i> in Oliveri, and <i>Il Gabbiano</i> in Terme Vigliatore. We recommend making a reservation at all of them.",
+  restaurants_q3: "What meat restaurants do you recommend in the surrounding area?",
+  restaurants_a3: "For meat specialities, we recommend <i>La Braceria dei Goti</i> in Barcellona Pozzo di Gotto, <i>Ristorante Angelo Borrello</i> in Sinagra, and <i>Osteria del Suino Nero</i> in Sinagra. We recommend making a reservation at all of them.",
+  restaurants_q4: "What local dishes should we try at restaurants?",
+  restaurants_a4: "Pasta alla Norma, pasta with prawns and pistachio, smoked swordfish, raw or cured seafood, tuna specialities, caponata, mixed fried fish, mixed grilled fish, swordfish rolls, Messina-style meat rolls (<i>braciolettine</i>).",
+  restaurants_q5: "What local specialities should we try at bakeries and snack bars?",
+  restaurants_a5: "Arancini, traditional <i>pitoni messinesi</i> (dough filled with tomato, endive and anchovies), <i>pitoni messinesi</i> with ham and cheese, ham-filled puff pastries, and Messina-style focaccia by the slice.",
+  restaurants_q6: "Can you recommend an ice cream parlour or bar in the area for breakfast with granita and brioche?",
+  restaurants_a6: "Our favourite Sicilian bar (ice cream parlor and coffee shop) is <i>Il Gabbiano</i> in Terme Vigliatore, just a 5-minute drive from Casa Mimosa. Good alternatives reachable on foot are <i>Gelato Mania di Alessandro Spinella</i> and <i>Il Veliero</i>.",
+
+
+  /* RECOMMENDATIONS WITH LINKS ENGLISH */
+  libertylines_name: "Liberty Lines",
+  libertylines_desc: "Hydrofoils connecting Milazzo with the Aeolian Islands.",
+  libertylines_link: "Visit website",
+  libertylines_url: "https://www.libertylines.it/en/destinations/milazzo/",
+
+  marinello_name: "Riserva Naturale Laghetti di Marinello",
+  marinello_desc: "Protected coastal reserve with lagoons, beaches and Mediterranean nature.",
+  marinello_link: "More info",
+  marinello_url: "https://orbs.regione.sicilia.it/aree-protette/riserve-naturali-siciliane/163-riserva-naturale-orientata-laghetti-di-marinello.html",
+
+  codavolpe_name: "Sentiero Coda di Volpe",
+  codavolpe_desc: "Scenic coastal trail through the natural landscape around Milazzo.",
+  codavolpe_link: "More info",
+  codavolpe_url: "https://maps.app.goo.gl/TtiA36ZGDo814aX26",
+
+  baiadeltono_name: "Baia del Tono",
+  baiadeltono_desc: "Long pebble beach on the western coast of Milazzo, with views of the Aeolian Islands. Make sure to stay until sunset.",
+  baiadeltono_link: "More info",
+  baiadeltono_url: "https://comune.milazzo.me.it/vivere-il-comune/luoghi/bellezza-naturale/baia-del-tono-gia-nota-come-n-gonia/",
+
+  ampmilazzo_name: "Area Marina Protetta Capo Milazzo",
+  ampmilazzo_desc: "Protected marine area around the promontory of Capo Milazzo, ideal for exploring the coast and sea.",
+  ampmilazzo_link: "Visit website",
+  ampmilazzo_url: "https://www.ampcapomilazzo.it/",
+
+  argimusco_name: "Megaliti di Argimusco",
+  argimusco_desc: "Mysterious prehistoric-looking rock formations on the Nebrodi mountains.",
+  argimusco_link: "More info",
+  argimusco_url: "https://maps.app.goo.gl/LU1AU4y6W4KxpSpk8",
+
+  corolla_name: "Parco Commerciale Corolla (Milazzo)",
+  corolla_desc: "Large shopping and leisure park with shops, restaurants and a cinema.",
+  corolla_link: "Visit website",
+  corolla_url: "https://www.parcocorolla.eu/",
+
+  tindari_name: "Tindari",
+  tindari_desc: "Historic hilltop sanctuary and archaeological site overlooking the Gulf of Patti and the Laghetti di Marinello.",
+  tindari_link: "More info",
+  tindari_url: "https://maps.app.goo.gl/PTLbKvqrNEKNDYGi6",
+
+  novara_name: "Novara di Sicilia",
+  novara_desc: "Charming mountain village known for its stone streets, traditional architecture and surrounding countryside.",
+  novara_link: "More info",
+  novara_url: "https://maps.app.goo.gl/8kD4gzNZFSYDXNBG9",
+
+  montalbano_name: "Montalbano Elicona",
+  montalbano_desc: "Medieval hilltop village with a historic castle and spectacular views over northern Sicily.",
+  montalbano_link: "More info",
+  montalbano_url: "https://borghipiubelliditalia.it/borgo/montalbano-elicona/",
+
+  camelia_name: "Agriturismo La Camelia",
+  camelia_desc: "Country agriturismo offering local Sicilian food and a peaceful rural setting.",
+  camelia_link: "Visit website",
+  camelia_url: "https://maps.app.goo.gl/hd5prKcDmhiS23Pe6",
+
+  davincenzo_name: "Da Vincenzo",
+  davincenzo_desc: "Traditional Sicilian restaurant specialising in fresh fish, meat and local ingredients.",
+  davincenzo_link: "Visit website",
+  davincenzo_url: "https://www.ristorantedavincenzo.it/",
+
+  risacca_name: "La Risacca",
+  risacca_desc: "Seaside restaurant serving fresh fish and traditional Sicilian cuisine.",
+  risacca_link: "Visit website",
+  risacca_url: "https://maps.app.goo.gl/L4ZN2R5RJ94vnjay5",
+
+  conchiglia_name: "La Conchiglia",
+  conchiglia_desc: "Restaurant specialising in seafood and traditional Sicilian dishes.",
+  conchiglia_link: "Visit website",
+  conchiglia_url: "https://maps.app.goo.gl/YHPhTq5eQg5Kf4s77",
+
+  gabbiano_name: "Il Gabbiano",
+  gabbiano_desc: "Fine dining restaurant serving both seafood and meat dishes.",
+  gabbiano_link: "Visit website",
+  gabbiano_url: "https://gabbianohotel.com/ristorante/",
+
+  braceria_name: "La Braceria dei Goti",
+  braceria_desc: "Butcher shop and grill restaurant in Barcellona Pozzo di Gotto specialising in high-quality meat cooked over charcoal.",
+  braceria_link: "Visit website",
+  braceria_url: "https://www.braceriadeigoti.it/ristorante-deigoti/",
+
+  borrello_name: "Ristorante Angelo Borrello",
+  borrello_desc: "Family-run restaurant in Sinagra featuring local Nebrodi products and traditional cuisine.",
+  borrello_link: "More info",
+  borrello_url: "https://maps.app.goo.gl/3YSkzWrd8PUDM2sj8",
+
+  suinonero_name: "Fattoria Borrello - Osteria dei Sapori",
+  suinonero_desc: "Agriturismo in Sinagra celebrating the flavours of the Nebrodi and local black pig.",
+  suinonero_link: "More info",
+  suinonero_url: "https://fattoriaborrello.it/osteria-2/",
+
+  calava_name: "Capo Calavà",
+  calava_desc: "Dramatic coastal promontory with rocky cliffs, caves, beaches and views of the Aeolian Islands.",
+  calava_link: "More info",
+  calava_url: "https://maps.app.goo.gl/r3yV2TRmw6rrTjPj6",
+
+  gioiosa_name: "Gioiosa Marea",
+  gioiosa_desc: "Seaside town with beaches, crystal-clear water, coastal scenery and beautiful views.",
+  gioiosa_link: "More info",
+  gioiosa_url: "https://maps.app.goo.gl/bAbTv5iRyuQGxtndA",
+  
+  donnarosa_name: "Donna Rosa",
+  donnarosa_desc: "Restaurant and pizzeria in Oliveri serving Sicilian cuisine, fresh fish, meat and a wide selection of pizzas.",
+  donnarosa_link: "Visit website",
+  donnarosa_url: "https://www.ristorantedonnarosa.it/",
+},
+};
+
+let currentLang = 'it';
+
+function setLang(lang, btn) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  const data = T[lang];
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const k = el.getAttribute('data-key');
+    if (data[k] !== undefined) el.innerHTML = data[k];
+  });
+
+  renderFAQ();
+}
+
+function renderFAQ() {
+  const data = T[currentLang];
+  
+  // Rental FAQ
+  const rentalFaq = document.getElementById('rental-faq');
+  rentalFaq.innerHTML = `
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        <span>${data.rental_q1}</span>
+        <div class="faq-toggle"></div>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-text"><p>${data.rental_a1}</p></div>
+      </div>
+    </div>
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        <span>${data.rental_q2}</span>
+        <div class="faq-toggle"></div>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-text"><p>${data.rental_a2}</p></div>
+      </div>
+    </div>
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        <span>${data.rental_q3}</span>
+        <div class="faq-toggle"></div>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-text"><p>${data.rental_a3}</p></div>
+      </div>
+    </div>
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        <span>${data.rental_q4}</span>
+        <div class="faq-toggle"></div>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-text"><p>${data.rental_a4}</p></div>
+      </div>
+    </div>
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        <span>${data.rental_q5}</span>
+        <div class="faq-toggle"></div>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-text"><p>${data.rental_a5}</p></div>
+      </div>
+    </div>
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        <span>${data.rental_q6}</span>
+        <div class="faq-toggle"></div>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-text"><p>${data.rental_a6}</p></div>
+      </div>
+    </div>
+  `;
+
+
+  // Activities FAQ
+  const activitiesFaq = document.getElementById('activities-faq');
+  activitiesFaq.innerHTML = `
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        <span>${data.activities_q1}</span>
+        <div class="faq-toggle"></div>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-text">
+          <p>${data.activities_a1}</p>
+          <div class="recommendation-item">
+            <div class="recommendation-title">${data.marinello_name}</div>
+            <div class="recommendation-details">${data.marinello_desc}</div>
+            <a href="${data.marinello_url}" class="recommendation-link" target="_blank">${data.marinello_link} →</a>
+          </div>
+          <div class="recommendation-item" style="margin-top: 12px;">
+            <div class="recommendation-title">${data.baiadeltono_name}</div>
+            <div class="recommendation-details">${data.baiadeltono_desc}</div>
+            <a href="${data.baiadeltono_url}" class="recommendation-link" target="_blank">${data.baiadeltono_link} →</a>
+          </div>
+          <div class="recommendation-item" style="margin-top: 12px;">
+            <div class="recommendation-title">${data.calava_name}</div>
+            <div class="recommendation-details">${data.calava_desc}</div>
+            <a href="${data.calava_url}" class="recommendation-link" target="_blank">${data.calava_link} →</a>
+          </div>
+          <div class="recommendation-item" style="margin-top: 12px;">
+            <div class="recommendation-title">${data.gioiosa_name}</div>
+            <div class="recommendation-details">${data.gioiosa_desc}</div>
+            <a href="${data.gioiosa_url}" class="recommendation-link" target="_blank">${data.gioiosa_link} →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        <span>${data.activities_q2}</span>
+        <div class="faq-toggle"></div>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-text">
+          <p>${data.activities_a2}</p>
+          <div class="recommendation-item">
+            <div class="recommendation-title">${data.libertylines_name}</div>
+            <div class="recommendation-details">${data.libertylines_desc}</div>
+            <a href="${data.libertylines_url}" class="recommendation-link" target="_blank">${data.libertylines_link} →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        <span>${data.activities_q3}</span>
+        <div class="faq-toggle"></div>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-text">
+          <p>${data.activities_a3}</p>
+          <div class="recommendation-item">
+            <div class="recommendation-title">${data.codavolpe_name}</div>
+            <div class="recommendation-details">${data.codavolpe_desc}</div>
+            <a href="${data.codavolpe_url}" class="recommendation-link" target="_blank">${data.codavolpe_link} →</a>
+          </div>
+          <div class="recommendation-item" style="margin-top: 12px;">
+            <div class="recommendation-title">${data.ampmilazzo_name}</div>
+            <div class="recommendation-details">${data.ampmilazzo_desc}</div>
+            <a href="${data.ampmilazzo_url}" class="recommendation-link" target="_blank">${data.ampmilazzo_link} →</a>
+          </div>
+          <div class="recommendation-item" style="margin-top: 12px;">
+            <div class="recommendation-title">${data.argimusco_name}</div>
+            <div class="recommendation-details">${data.argimusco_desc}</div>
+            <a href="${data.argimusco_url}" class="recommendation-link" target="_blank">${data.argimusco_link} →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        <span>${data.activities_q4}</span>
+        <div class="faq-toggle"></div>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-text">
+          <p>${data.activities_a4}</p>
+          <div class="recommendation-item">
+            <div class="recommendation-title">${data.corolla_name}</div>
+            <div class="recommendation-details">${data.corolla_desc}</div>
+            <a href="${data.corolla_url}" class="recommendation-link" target="_blank">${data.corolla_link} →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        <span>${data.activities_q5}</span>
+        <div class="faq-toggle"></div>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-text">
+          <p>${data.activities_a5}</p>
+          <div class="recommendation-item">
+            <div class="recommendation-title">${data.marinello_name}</div>
+            <div class="recommendation-details">${data.marinello_desc}</div>
+            <a href="${data.marinello_url}" class="recommendation-link" target="_blank">${data.marinello_link} →</a>
+          </div>
+          <div class="recommendation-item" style="margin-top: 12px;">
+            <div class="recommendation-title">${data.tindari_name}</div>
+            <div class="recommendation-details">${data.tindari_desc}</div>
+            <a href="${data.tindari_url}" class="recommendation-link" target="_blank">${data.tindari_link} →</a>
+          </div>
+          <div class="recommendation-item" style="margin-top: 12px;">
+            <div class="recommendation-title">${data.baiadeltono_name}</div>
+            <div class="recommendation-details">${data.baiadeltono_desc}</div>
+            <a href="${data.baiadeltono_url}" class="recommendation-link" target="_blank">${data.baiadeltono_link} →</a>
+          </div>
+          <div class="recommendation-item" style="margin-top: 12px;">
+            <div class="recommendation-title">${data.ampmilazzo_name}</div>
+            <div class="recommendation-details">${data.ampmilazzo_desc}</div>
+            <a href="${data.ampmilazzo_url}" class="recommendation-link" target="_blank">${data.ampmilazzo_link} →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        <span>${data.activities_q6}</span>
+        <div class="faq-toggle"></div>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-text">
+          <p>${data.activities_a6}</p>
+          <div class="recommendation-item">
+            <div class="recommendation-title">${data.novara_name}</div>
+            <div class="recommendation-details">${data.novara_desc}</div>
+            <a href="${data.novara_url}" class="recommendation-link" target="_blank">${data.novara_link} →</a>
+          </div>
+          <div class="recommendation-item" style="margin-top: 12px;">
+            <div class="recommendation-title">${data.montalbano_name}</div>
+            <div class="recommendation-details">${data.montalbano_desc}</div>
+            <a href="${data.montalbano_url}" class="recommendation-link" target="_blank">${data.montalbano_link} →</a>
+          </div>
+          <div class="recommendation-item" style="margin-top: 12px;">
+            <div class="recommendation-title">${data.argimusco_name}</div>
+            <div class="recommendation-details">${data.argimusco_desc}</div>
+            <a href="${data.argimusco_url}" class="recommendation-link" target="_blank">${data.argimusco_link} →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+
+ // Restaurants FAQ
+const restaurantsFaq = document.getElementById('restaurants-faq');
+restaurantsFaq.innerHTML = `
+  <div class="faq-item" onclick="toggleFAQ(this)">
+    <div class="faq-question">
+      <span>${data.restaurants_q1}</span>
+      <div class="faq-toggle"></div>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-text"><p>${data.restaurants_a1}</p>
+        <div class="recommendation-item">
+          <div class="recommendation-title">${data.risacca_name}</div>
+          <div class="recommendation-details">${data.risacca_desc}</div>
+          <a href="${data.risacca_url}" class="recommendation-link" target="_blank">${data.risacca_link} →</a>
+        </div>
+        <div class="recommendation-item" style="margin-top: 12px;">
+          <div class="recommendation-title">${data.conchiglia_name}</div>
+          <div class="recommendation-details">${data.conchiglia_desc}</div>
+          <a href="${data.conchiglia_url}" class="recommendation-link" target="_blank">${data.conchiglia_link} →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item" onclick="toggleFAQ(this)">
+    <div class="faq-question">
+      <span>${data.restaurants_q2}</span>
+      <div class="faq-toggle"></div>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-text">
+        <p>${data.restaurants_a2}</p>
+        <div class="recommendation-item">
+          <div class="recommendation-title">${data.davincenzo_name}</div>
+          <div class="recommendation-details">${data.davincenzo_desc}</div>
+          <a href="${data.davincenzo_url}" class="recommendation-link" target="_blank">${data.davincenzo_link} →</a>
+        </div>
+        <div class="recommendation-item" style="margin-top: 12px;">
+          <div class="recommendation-title">${data.camelia_name}</div>
+          <div class="recommendation-details">${data.camelia_desc}</div>
+          <a href="${data.camelia_url}" class="recommendation-link" target="_blank">${data.camelia_link} →</a>
+        </div>
+        <div class="recommendation-item" style="margin-top: 12px;">
+          <div class="recommendation-title">${data.donnarosa_name}</div>
+          <div class="recommendation-details">${data.donnarosa_desc}</div>
+          <a href="${data.donnarosa_url}" class="recommendation-link" target="_blank">${data.donnarosa_link} →</a>
+        </div>
+        <div class="recommendation-item" style="margin-top: 12px;">
+          <div class="recommendation-title">${data.gabbiano_name}</div>
+          <div class="recommendation-details">${data.gabbiano_desc}</div>
+          <a href="${data.gabbiano_url}" class="recommendation-link" target="_blank">${data.gabbiano_link} →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item" onclick="toggleFAQ(this)">
+    <div class="faq-question">
+      <span>${data.restaurants_q3}</span>
+      <div class="faq-toggle"></div>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-text">
+        <p>${data.restaurants_a3}</p>
+               <div class="recommendation-item" style="margin-top: 12px;">
+          <div class="recommendation-title">${data.braceria_name}</div>
+          <div class="recommendation-details">${data.braceria_desc}</div>
+          <a href="${data.braceria_url}" class="recommendation-link" target="_blank">${data.braceria_link} →</a>
+        </div>
+        <div class="recommendation-item" style="margin-top: 12px;">
+          <div class="recommendation-title">${data.borrello_name}</div>
+          <div class="recommendation-details">${data.borrello_desc}</div>
+          <a href="${data.borrello_url}" class="recommendation-link" target="_blank">${data.borrello_link} →</a>
+        </div>
+        <div class="recommendation-item" style="margin-top: 12px;">
+          <div class="recommendation-title">${data.suinonero_name}</div>
+          <div class="recommendation-details">${data.suinonero_desc}</div>
+          <a href="${data.suinonero_url}" class="recommendation-link" target="_blank">${data.suinonero_link} →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item" onclick="toggleFAQ(this)">
+    <div class="faq-question">
+      <span>${data.restaurants_q4}</span>
+      <div class="faq-toggle"></div>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-text"><p>${data.restaurants_a4}</p></div>
+    </div>
+  </div>
+
+  <div class="faq-item" onclick="toggleFAQ(this)">
+    <div class="faq-question">
+      <span>${data.restaurants_q5}</span>
+      <div class="faq-toggle"></div>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-text">
+        <p>${data.restaurants_a5}</p></div>
+    </div>
+  </div>
+
+  <div class="faq-item" onclick="toggleFAQ(this)">
+    <div class="faq-question">
+      <span>${data.restaurants_q6}</span>
+      <div class="faq-toggle"></div>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-text">
+        <p>${data.restaurants_a6}</p>
+        <div class="recommendation-item" style="margin-top: 12px;">
+          <div class="recommendation-title">${data.gabbiano_name}</div>
+          <div class="recommendation-details">${data.gabbiano_desc}</div>
+          <a href="${data.gabbiano_url}" class="recommendation-link" target="_blank">${data.gabbiano_link} →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+`;
+}
+
+function toggleFAQ(item) {
+  item.classList.toggle('open');
+}
+
+/* ── HEADER SCROLL ─────────────────────────────────────── */
+const hdr = document.getElementById('site-header');
+window.addEventListener('scroll', () => {
+  hdr.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* ── HAMBURGER ─────────────────────────────────────────── */
+function toggleMenu() {
+  const nav = document.getElementById('main-nav');
+  nav.classList.toggle('open');
+}
+document.querySelectorAll('#main-nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('main-nav').classList.remove('open');
+  });
+});
+
+/* ── INIT ──────────────────────────────────────────────── */
+setLang('it', document.querySelector('.lang-btn'));
+</script>
+</body>
+</html>
