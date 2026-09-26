@@ -113,29 +113,46 @@ header.scrolled nav a:hover { color: var(--ink); }
 
 .lang-group {
   display: flex;
-  gap: 6px;
   align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border: 1.5px solid rgba(212,171,106,0.65);
+  border-radius: 999px;
+  background: rgba(26,23,20,0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+header.scrolled .lang-group {
+  background: rgba(26,23,20,0.42);
+  border-color: rgba(184,146,74,0.55);
 }
 .lang-btn {
   font-family: var(--sans);
-  font-weight: 300;
-  font-size: 0.65rem;
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
+  color: rgba(253,250,244,0.68);
   background: none;
   border: none;
+  border-radius: 999px;
   cursor: pointer;
-  padding: 4px 2px;
-  transition: color 0.3s;
+  padding: 8px 17px;
+  transition: color 0.3s, background 0.3s;
 }
-.lang-btn:hover,
-.lang-btn.active { color: var(--gold); }
-header.scrolled .lang-btn { color: var(--mist); }
-header.scrolled .lang-btn:hover,
-header.scrolled .lang-btn.active { color: var(--gold); }
-.lang-sep { color: rgba(255,255,255,0.2); font-size: 0.6rem; }
-header.scrolled .lang-sep { color: rgba(0,0,0,0.15); }
+.lang-btn:hover { color: var(--white); background: rgba(255,255,255,0.12); }
+.lang-btn.active {
+  color: var(--ink);
+  background: var(--gold);
+  font-weight: 600;
+}
+.lang-btn.active:hover { background: var(--gold-lt); }
+header.scrolled .lang-btn { color: rgba(253,250,244,0.68); }
+header.scrolled .lang-btn:hover { color: var(--white); background: rgba(255,255,255,0.14); }
+header.scrolled .lang-btn.active { color: var(--ink); background: var(--gold); }
+header.scrolled .lang-btn.active:hover { background: var(--gold-lt); }
+.lang-sep { display: none; }
 
 .hamburger {
   display: none;
@@ -420,7 +437,14 @@ footer {
 /* ── MOBILE ────────────────────────────────────────────── */
 @media (max-width: 900px) {
   header { padding: 18px 24px; }
-  header.scrolled { padding: 12px 24px; }
+  header.scrolled {
+    padding: 12px 24px;
+    /* backdrop-filter on an ancestor turns it into the containing block for
+       position:fixed descendants — that would shrink the full-screen menu
+       below down to this thin header bar, so it's switched off on mobile. */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 
   nav { display: none; }
   nav.open {
@@ -442,6 +466,9 @@ footer {
   }
   nav.open a:hover { color: var(--gold); }
   .hamburger { display: flex; }
+  body.menu-open { overflow: hidden; }
+
+  .lang-btn { font-size: 0.72rem; padding: 7px 13px; }
 
   #hero { 
     height: 60vh;
@@ -469,6 +496,9 @@ footer {
     padding: 0 16px 32px;
   }
   
+  .lang-group { padding: 3px; }
+  .lang-btn { font-size: 0.68rem; padding: 6px 10px; letter-spacing: 0.06em; }
+
   .hero-title {
     font-size: 1.8rem;
   }
@@ -500,6 +530,7 @@ footer {
   </button>
 
   <nav id="main-nav">
+    <a href="index_v2_1.html" data-key="nav_home">Home</a>
     <a href="#rental" data-key="nav_rental">Rental</a>
     <a href="#activities" data-key="nav_activities">Activities</a>
     <a href="#restaurants" data-key="nav_restaurants">Restaurants</a>
@@ -665,7 +696,7 @@ it: {
   argimusco_link: "Maggiori informazioni",
   argimusco_url: "https://maps.app.goo.gl/LU1AU4y6W4KxpSpk8",
 
-  corolla_name: "Parco Commerciale Corolla (Milazzo)",
+  corolla_name: "Parco Commerciale Corolla",
   corolla_desc: "Grande parco commerciale e ricreativo con negozi, ristoranti e cinema.",
   corolla_link: "Visita il sito",
   corolla_url: "https://www.parcocorolla.eu/",
@@ -711,7 +742,7 @@ it: {
   gabbiano_url: "https://gabbianohotel.com/ristorante/",
 
   braceria_name: "La Braceria dei Goti",
-  braceria_desc: "Macelleria e ristorante grill a Barcellona Pozzo di Gotto specializzato in carne di alta qualità cotta sulla brace.",
+  braceria_desc: "Macelleria e ristorante grill specializzato in carne di alta qualità cotta sulla brace.",
   braceria_link: "Visita il sito",
   braceria_url: "https://www.braceriadeigoti.it/ristorante-deigoti/",
 
@@ -764,10 +795,10 @@ de: {
   rental_q3: "Warum gibt es keine WLAN-Internetverbindung?",
   rental_a3: "Leider würde die Bereitstellung einer WLAN-Verbindung ein regelmäßiges Abonnement bei einem Internetanbieter erfordern. Da die Wohnung nur 4-5 Monate im Jahr genutzt wird, ist dies für uns nicht wirtschaftlich vertretbar. Wenn unser Geschäft wächst, werden wir die Erweiterung unserer Dienstleistungen in Betracht ziehen. Vielen Dank für Ihr Verständnis.",
   rental_q4: "Gibt es andere Möglichkeiten, auf das Internet zuzugreifen?",
-  rental_a4: "Auf Anfrage können wir ein 4G-Modem bereitstellen, das an einer bestimmten Stelle im Garten aufgestellt wird, wo die Signalstärke ausreichend ist. Dieser Service kostet 30€ als einmalige Gebühr und muss mit uns vereinbart werden. Die Aktivierung der Verbindung dauert normalerweise 24 Stunden.",
+  rental_a4: "Auf Anfrage können wir ein 4G-Modem bereitstellen, das an einer bestimmten Stelle im Garten aufgestellt wird, wo die Abdeckung ausreichend ist. Dieser Service kostet 30€ als einmalige Gebühr und muss mit uns vereinbart werden. Die Aktivierung der Verbindung dauert normalerweise 24 Stunden.",
   rental_q5: "Wo ist der Schalter für die Gartenbeleuchtung?",
   rental_a5: "Neben dem Schrank mit dem Fernseher, unten.",
-  rental_q6: "Wie sicher ist die Gegend? Können wir die Gartentür nachts offen lassen?",
+  rental_q6: "Wie sicher ist die Gegend? Können wir die Gartentür nachts oder während unserer Abwesenheit offen lassen?",
   rental_a6: "Die Gegend ist absolut sicher. Seit wir das Casa Mimosa Grundstück vor über 20 Jahren erworben haben, gab es noch nie Einbrüche oder Diebstähle.",
 
   /* ACTIVITIES */
@@ -810,17 +841,17 @@ de: {
   marinello_url: "https://orbs.regione.sicilia.it/aree-protette/riserve-naturali-siciliane/163-riserva-naturale-orientata-laghetti-di-marinello.html",
 
   codavolpe_name: "Sentiero Coda di Volpe",
-  codavolpe_desc: "Malerischer Wanderweg durch die natürliche Landschaft zwischen Marinello und Tindari.",
+  codavolpe_desc: "Malerischer Küstenpfad durch die natürliche Landschaft rund um Milazzo.",
   codavolpe_link: "Mehr Informationen",
   codavolpe_url: "https://maps.app.goo.gl/TtiA36ZGDo814aX26",
 
   baiadeltono_name: "Baia del Tono",
-  baiadeltono_desc: "Langer Kieselstrand an der Westküste von Milazzo mit Blick auf die Äolischen Inseln. Bleiben Sie unbedingt bis zum Sonnenuntergang.",
+  baiadeltono_desc: "Langer Sand- und Kieselstrand an der Westküste von Milazzo mit Blick auf die Äolischen Inseln. Bleiben Sie unbedingt bis zum Sonnenuntergang.",
   baiadeltono_link: "Mehr Informationen",
   baiadeltono_url: "https://comune.milazzo.me.it/vivere-il-comune/luoghi/bellezza-naturale/baia-del-tono-gia-nota-come-n-gonia/",
 
   ampmilazzo_name: "Area Marina Protetta Capo Milazzo",
-  ampmilazzo_desc: "Geschütztes Meeresgebiet rund um die Halbinsel von Capo Milazzo, ideal zum Erkunden der Küste und des Meeres.",
+  ampmilazzo_desc: "Geschütztes Meeresgebiet rund um das Vorgebirge von Capo Milazzo, ideal zum Erkunden der Küste und des Meeres.",
   ampmilazzo_link: "Website besuchen",
   ampmilazzo_url: "https://www.ampcapomilazzo.it/",
 
@@ -829,13 +860,13 @@ de: {
   argimusco_link: "Mehr Informationen",
   argimusco_url: "https://maps.app.goo.gl/LU1AU4y6W4KxpSpk8",
 
-  corolla_name: "Parco Commerciale Corolla (Milazzo)",
+  corolla_name: "Parco Commerciale Corolla",
   corolla_desc: "Großer Einkaufs- und Freizeitpark mit Geschäften, Restaurants und Kino.",
   corolla_link: "Website besuchen",
   corolla_url: "https://www.parcocorolla.eu/",
 
   tindari_name: "Tindari",
-  tindari_desc: "Historisches Heiligtum auf dem Hügel und archäologische (griechisch-römische) Stätte mit Blick auf den Golf von Patti und die Laghetti di Marinello.",
+  tindari_desc: "Historisches Heiligtum auf dem Hügel und archäologische Stätte mit Blick auf den Golf von Patti und die Laghetti di Marinello.",
   tindari_link: "Mehr Informationen",
   tindari_url: "https://maps.app.goo.gl/PTLbKvqrNEKNDYGi6",
 
@@ -845,7 +876,7 @@ de: {
   novara_url: "https://maps.app.goo.gl/8kD4gzNZFSYDXNBG9",
 
   montalbano_name: "Montalbano Elicona",
-  montalbano_desc: "Mittelalterliches Bergdorf mit einer historischen Burg und spektakulärer Aussicht über Nordostsizilien.",
+  montalbano_desc: "Mittelalterliches Hügeldorf mit einer historischen Burg und spektakulärer Aussicht über Nordostsizilien.",
   montalbano_link: "Mehr Informationen",
   montalbano_url: "https://borghipiubelliditalia.it/borgo/montalbano-elicona/",
 
@@ -860,12 +891,12 @@ de: {
   davincenzo_url: "https://www.ristorantedavincenzo.it/",
 
   risacca_name: "La Risacca",
-  risacca_desc: "Strandrestaurant mit frischem Fisch, traditioneller sizilianische Küche und Pizza.",
+  risacca_desc: "Strandrestaurant mit frischem Fisch und traditioneller sizilianischer Küche.",
   risacca_link: "Website besuchen",
   risacca_url: "https://maps.app.goo.gl/L4ZN2R5RJ94vnjay5",
 
   conchiglia_name: "La Conchiglia",
-  conchiglia_desc: "Restaurant spezialisiert auf Fischgerichte, traditionelle sizilianische Gerichte, und Pizza",
+  conchiglia_desc: "Restaurant spezialisiert auf Meeresfrüchte und traditionelle sizilianische Gerichte.",
   conchiglia_link: "Website besuchen",
   conchiglia_url: "https://maps.app.goo.gl/YHPhTq5eQg5Kf4s77",
 
@@ -875,7 +906,7 @@ de: {
   gabbiano_url: "https://gabbianohotel.com/ristorante/",
 
   braceria_name: "La Braceria dei Goti",
-  braceria_desc: "Metzgerei und Grillrestaurant in Barcellona Pozzo di Gotto, spezialisiert auf hochwertige Fleischsorten über Holzkohle gegrillt.",
+  braceria_desc: "Metzgerei und Grillrestaurant spezialisiert auf hochwertige Fleischsorten über Holzkohle gegrillt.",
   braceria_link: "Website besuchen",
   braceria_url: "https://www.braceriadeigoti.it/ristorante-deigoti/",
 
@@ -895,14 +926,9 @@ de: {
   calava_url: "https://maps.app.goo.gl/r3yV2TRmw6rrTjPj6",
 
   gioiosa_name: "Gioiosa Marea",
-  gioiosa_desc: "Küstendorf mit Stränden, kristallklarem Wasser, Küstenlandschaft und wunderschöner Aussicht.",
+  gioiosa_desc: "Strandstadt mit Stränden, kristallklarem Wasser, Küstenlandschaft und wunderschöner Aussicht.",
   gioiosa_link: "Mehr Informationen",
   gioiosa_url: "https://maps.app.goo.gl/bAbTv5iRyuQGxtndA",
-  
-  donnarosa_name: "Donna Rosa",
-  donnarosa_desc: "Restaurant und Pizzeria in Oliveri mit sizilianischer Küche, frischem Fisch, Fleisch und einer großen Auswahl an Pizzen.",
-  donnarosa_link: "Website besuchen",
-  donnarosa_url: "https://www.ristorantedonnarosa.it/",
 },
 
 en: {
@@ -980,7 +1006,7 @@ en: {
   codavolpe_url: "https://maps.app.goo.gl/TtiA36ZGDo814aX26",
 
   baiadeltono_name: "Baia del Tono",
-  baiadeltono_desc: "Long pebble beach on the western coast of Milazzo, with views of the Aeolian Islands. Make sure to stay until sunset.",
+  baiadeltono_desc: "Long sandy and pebble beach on the western coast of Milazzo, with views of the Aeolian Islands. Make sure to stay until sunset.",
   baiadeltono_link: "More info",
   baiadeltono_url: "https://comune.milazzo.me.it/vivere-il-comune/luoghi/bellezza-naturale/baia-del-tono-gia-nota-come-n-gonia/",
 
@@ -994,7 +1020,7 @@ en: {
   argimusco_link: "More info",
   argimusco_url: "https://maps.app.goo.gl/LU1AU4y6W4KxpSpk8",
 
-  corolla_name: "Parco Commerciale Corolla (Milazzo)",
+  corolla_name: "Parco Commerciale Corolla",
   corolla_desc: "Large shopping and leisure park with shops, restaurants and a cinema.",
   corolla_link: "Visit website",
   corolla_url: "https://www.parcocorolla.eu/",
@@ -1040,7 +1066,7 @@ en: {
   gabbiano_url: "https://gabbianohotel.com/ristorante/",
 
   braceria_name: "La Braceria dei Goti",
-  braceria_desc: "Butcher shop and grill restaurant in Barcellona Pozzo di Gotto specialising in high-quality meat cooked over charcoal.",
+  braceria_desc: "Butcher shop and grill restaurant specialising in high-quality meat cooked over charcoal.",
   braceria_link: "Visit website",
   braceria_url: "https://www.braceriadeigoti.it/ristorante-deigoti/",
 
@@ -1063,12 +1089,8 @@ en: {
   gioiosa_desc: "Seaside town with beaches, crystal-clear water, coastal scenery and beautiful views.",
   gioiosa_link: "More info",
   gioiosa_url: "https://maps.app.goo.gl/bAbTv5iRyuQGxtndA",
-  
-  donnarosa_name: "Donna Rosa",
-  donnarosa_desc: "Restaurant and pizzeria in Oliveri serving Sicilian cuisine, fresh fish, meat and a wide selection of pizzas.",
-  donnarosa_link: "Visit website",
-  donnarosa_url: "https://www.ristorantedonnarosa.it/",
 },
+
 };
 
 let currentLang = 'it';
@@ -1443,11 +1465,13 @@ window.addEventListener('scroll', () => {
 /* ── HAMBURGER ─────────────────────────────────────────── */
 function toggleMenu() {
   const nav = document.getElementById('main-nav');
-  nav.classList.toggle('open');
+  const isOpen = nav.classList.toggle('open');
+  document.body.classList.toggle('menu-open', isOpen);
 }
 document.querySelectorAll('#main-nav a').forEach(a => {
   a.addEventListener('click', () => {
     document.getElementById('main-nav').classList.remove('open');
+    document.body.classList.remove('menu-open');
   });
 });
 
